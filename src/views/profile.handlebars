@@ -1,0 +1,22 @@
+<div class="container">
+    {{#if admin}}
+        <h1>Iniciaste session como <span class="text-danger">Administrador</span></h1>
+
+        <h2>Estos son las ultimas ordenes de pedidos:</h2>
+        <p>Orden 4022 - $40</p>
+        <p>Orden 3223 - $22</p>
+        <p>Orden 2122 - $120</p>
+    {{else}}
+        <h1 class="text-center">Hola {{first_name}}</h1>
+
+        <h2>Estos son tus datos</h2>
+        <p> Nombre Completo: {{first_name}} {{last_name}}</p>
+        <p> Email: {{email}}</p>
+        <p> Edad: {{age}}</p>
+    {{/if}}
+
+    <form action="/api/sessions/logout" method="POST">
+        <button class="btn btn-danger">Cerrar la sesión</button>
+    </form>
+    
+</div>

@@ -1,0 +1,11 @@
+{{#each products}}
+    <!--Card Product-->
+    <div class="card_product col-2 col-lg-4 p-4">
+        <img class="img_card" src="/img/img-cocacola.png" alt="">
+        <section class="info_card text-center">
+            <p class="info_description">{{title}}</p>
+            <p class="info_price text-danger ">${{price}}</p>
+            <button type="button" class="btn btn-success btn-sm">Agregar</button>
+        </section>
+    </div>
+{{/each}}
