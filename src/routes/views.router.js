@@ -44,8 +44,17 @@ router.get('/register', publicRoutes, (req, res) => {
     res.render('register', {style: "form.css"})
 })
 
+router.get('/failregister', async (req, res) => {
+    console.log("Failed Register")
+    res.send({error:"Failed"})
+})
+
 router.get('/login', publicRoutes, (req, res) => {
     res.render('login', {style: "form.css"})
+})
+
+router.get('/faillogin', (req, res) => {
+    res.send({error:"Failed Login"})
 })
 
 router.get('/profile', authenticateUser, async (req, res) => {

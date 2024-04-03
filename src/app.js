@@ -1,16 +1,24 @@
+// Others Librarys
 import cookieParser from "cookie-parser";
 import express from "express";
 import session from "express-session";
 import { engine } from "express-handlebars"
+
+// Conect MongoDB
 import MongoStore from "connect-mongo";
 import mongoose from "mongoose";
+// Passport
+import passport from "passport";
+import initializePassport from "./utils/passport.config.js";
 
-import __dirname from './utils.js'
-
+// Routers
 import routerProducts from "./routes/products.router.js";
 import routerSessions from "./routes/sessions.router.js";
 import routerViews from "./routes/views.router.js";
 import bodyParser from "body-parser";
+
+// Utils and config
+import __dirname from './utils.js'
 
 //const express = require('express')
 const app = express()
@@ -28,6 +36,11 @@ app.use(session({
     saveUninitialized:true
 }))
 
+// Passport
+initializePassport();
+app.use(passport.initialize())
+app.use(passport.session())
+
 app.get('/', (req, res) => {
     res.redirect("/home")
 })
@@ -35,11 +48,12 @@ app.get('/', (req, res) => {
 // -- Middlewares --
 app.use(express.json())
 app.use(bodyParser.urlencoded({extended:true}))
+app.use(express.urlencoded({ extended: true }))
 app.use(express.static( __dirname + '/public'))
 
 // Handlebars
 app.engine('handlebars', engine());
-app.set('views', __dirname + '/views')
+app.set('views', __dirname  + '/views')
 app.set('view engine', 'handlebars')
 app.set('view options', { layout: 'main' });
 
